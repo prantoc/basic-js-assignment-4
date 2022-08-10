@@ -3,10 +3,10 @@
 
 function radianToDegree(radian) {
     //note: formula - 10rad × 180 / π = 572.958°
-    let degree = radian * 180 / Math.PI;
+    let degree = radian * (180 / Math.PI);
     return degree.toFixed(2);
 }
-const getDegree = radianToDegree(25);
+const getDegree = radianToDegree(10);
 // console.log(getDegree);
 
 
@@ -42,4 +42,36 @@ function oilPrice(diesel, petrol, octane) {
 }
 
 const getTotalPrice = oilPrice(1, 1, 1);
-console.log(getTotalPrice);
+// console.log(getTotalPrice);
+
+//* Problem 4: publicBusFare
+//todo: একটি বড় সংখ্যাক মানুষজন পিকনিকে যাবে। বাসের সংখ্যা মানুষের সংখার উপর নির্ভর করবে। ধরো আমাদের বাস ও মাইক্রো আছে ।প্রতিটি বাসের ক্যাপাসিটি ৫০ জন এবং প্রতিটি মাইক্রবাসের ক্যাপাসিটি ১১ জন এবং পাবলিক বাসের প্রতিটি টিকেটের মূল্য ২৫০ টাকা করে। এখন তোমাকে একটি ফাংশন লিখতে হবে যার নাম হবে publicBusFare যেটি প্যরামিটার হিসেবে একটা সংখ্যা(কতজন যাবে)  নিবে । মোট কতটাকা পাবলিক বাস ফেয়ারে যাবে সেটি তোমাকে রিটার্ন করবে ।
+
+//todo: উদাহরণ১ঃ
+//todo: যদি ১১৭ জন মানুষ পিকনিকে যায় তাহলে আমাদের বাস লাগবে ২ টি ও মাইক্রোবাস লাগবে ১ টি । বাকি মানুষ পাবলিক বাসে যাবে। এই কয়জন মানুষগুলোর জন্য পাবলিক বাসের ভাড়া মোট কত হবে সেটি রিটার্ন করতে হবে।
+
+//todo: উদাহরণ২ঃ
+//todo: যদি ২৩৫ জন মানুষ পিকনিকে যায় তাহলে আমাদের বাস লাগবে ৪ টি ও মাইক্রোবাস লাগবে ৩ টি এবং বাকি মানুষ পাবলিক বাসে যাবে। এই কয়জন মানুষগুলোর জন্য পাবলিক বাসের ভাড়া মোট কত হবে সেটি রিটার্ন করতে হবে।
+
+
+
+function publicBusFare(persons) {
+    const busCapacity = 50;
+    const microbusCapacity = 11;
+    const publicBusFare = 250;
+
+    if (persons >= 50) {
+        let trnsptInBus = Math.floor(persons / busCapacity) * busCapacity;
+        let peplForMicbus = persons - trnsptInBus;
+        let trnsptInMicBus = Math.floor(peplForMicbus / microbusCapacity) * microbusCapacity;
+        let restPepl = peplForMicbus - trnsptInMicBus;
+        let pblcBusFare = publicBusFare * restPepl;
+        return pblcBusFare;
+    } else {
+        let pblcBusFare = publicBusFare * persons;
+        return pblcBusFare;
+    }
+}
+
+const totalBusFare = publicBusFare(65);
+console.log(totalBusFare);
