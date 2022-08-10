@@ -53,21 +53,25 @@ const getTotalPrice = oilPrice(1, 1, 1);
 //todo: উদাহরণ২ঃ
 //todo: যদি ২৩৫ জন মানুষ পিকনিকে যায় তাহলে আমাদের বাস লাগবে ৪ টি ও মাইক্রোবাস লাগবে ৩ টি এবং বাকি মানুষ পাবলিক বাসে যাবে। এই কয়জন মানুষগুলোর জন্য পাবলিক বাসের ভাড়া মোট কত হবে সেটি রিটার্ন করতে হবে।
 
-
-
 function publicBusFare(p) {
     const bc = 50;
     const mc = 11;
     const pbfpp = 250;
 
     if (p >= 50) {
-        let plfmb = p % bc; //plfmb = person left for microbus
-        let plfpt = plfmb % mc; //plfpt = person left for public transport
-        let tpbf = plfpt * pbfpp;
+        /**
+         * let plfmb = p % bc; //note: plfmb = person left for microbus
+         * let plfpt = plfmb % mc; //plfpt = person left for public transport
+         * let tpbf = plfpt * pbfpp;
+         *  **/
+        let tpbf = ((p % bc) % mc) * pbfpp;
         return tpbf;
     } else if (p >= 11) {
-        let plfpt = plfmb % mc; //plfpt = person left for public transport
-        let tpbf = plfpt * pbfpp;
+        /**
+         * let plfpt = p % mc; //plfpt = person left for public transport
+         * let tpbf = plfpt * pbfpp;
+        **/
+        let tpbf = (p % mc) * pbfpp;
         return tpbf;
     } else {
         let tpbf = p * pbfpp;
@@ -75,5 +79,5 @@ function publicBusFare(p) {
     }
 }
 
-const totalBusFare = publicBusFare(62);
+const totalBusFare = publicBusFare(49);
 console.log(totalBusFare);

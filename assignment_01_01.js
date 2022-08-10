@@ -1,0 +1,1 @@
+function publicBusFare(u) { return 50 <= u ? u % 50 % 11 * 250 : 11 <= u ? u % 11 * 250 : 250 * u } console.log(publicBusFare(12));
