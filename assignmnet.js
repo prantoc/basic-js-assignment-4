@@ -55,23 +55,25 @@ const getTotalPrice = oilPrice(1, 1, 1);
 
 
 
-function publicBusFare(persons) {
-    const busCapacity = 50;
-    const microbusCapacity = 11;
-    const publicBusFare = 250;
+function publicBusFare(p) {
+    const bc = 50;
+    const mc = 11;
+    const pbfpp = 250;
 
-    if (persons >= 50) {
-        let trnsptInBus = Math.floor(persons / busCapacity) * busCapacity;
-        let peplForMicbus = persons - trnsptInBus;
-        let trnsptInMicBus = Math.floor(peplForMicbus / microbusCapacity) * microbusCapacity;
-        let restPepl = peplForMicbus - trnsptInMicBus;
-        let pblcBusFare = publicBusFare * restPepl;
-        return pblcBusFare;
+    if (p >= 50) {
+        let plfmb = p % bc; //plfmb = person left for microbus
+        let plfpt = plfmb % mc; //plfpt = person left for public transport
+        let tpbf = plfpt * pbfpp;
+        return tpbf;
+    } else if (p >= 11) {
+        let plfpt = plfmb % mc; //plfpt = person left for public transport
+        let tpbf = plfpt * pbfpp;
+        return tpbf;
     } else {
-        let pblcBusFare = publicBusFare * persons;
-        return pblcBusFare;
+        let tpbf = p * pbfpp;
+        return tpbf;
     }
 }
 
-const totalBusFare = publicBusFare(65);
+const totalBusFare = publicBusFare(62);
 console.log(totalBusFare);
