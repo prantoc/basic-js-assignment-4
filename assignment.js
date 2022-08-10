@@ -54,30 +54,32 @@ const getTotalPrice = oilPrice(1, 1, 1);
 //todo: যদি ২৩৫ জন মানুষ পিকনিকে যায় তাহলে আমাদের বাস লাগবে ৪ টি ও মাইক্রোবাস লাগবে ৩ টি এবং বাকি মানুষ পাবলিক বাসে যাবে। এই কয়জন মানুষগুলোর জন্য পাবলিক বাসের ভাড়া মোট কত হবে সেটি রিটার্ন করতে হবে।
 
 function publicBusFare(p) {
-    const bc = 50;
-    const mc = 11;
-    const pbfpp = 250;
+    const a = 50;
+    const b = 11;
+    const c = 250;
 
     if (p >= 50) {
-        /**
-         * let plfmb = p % bc; //note: plfmb = person left for microbus
-         * let plfpt = plfmb % mc; //plfpt = person left for public transport
-         * let tpbf = plfpt * pbfpp;
-         *  **/
-        let tpbf = ((p % bc) % mc) * pbfpp;
-        return tpbf;
+        return ((p % a) % b) * c;
     } else if (p >= 11) {
-        /**
-         * let plfpt = p % mc; //plfpt = person left for public transport
-         * let tpbf = plfpt * pbfpp;
-        **/
-        let tpbf = (p % mc) * pbfpp;
-        return tpbf;
+        return (p % b) * c;
     } else {
-        let tpbf = p * pbfpp;
-        return tpbf;
+        return p * c;
     }
 }
 
-const totalBusFare = publicBusFare(49);
-console.log(totalBusFare);
+const totalBusFare = publicBusFare(365);
+// console.log(totalBusFare);
+
+
+//* Problem 5: isBestFriend
+//todo: তোমাকে একটি ফাংশন লিখতে হবে isBestFriend যেটি প্যরামিটার হিসেবে দুইটি অবজেক্ট নিবে । তোমাকে অবজেক্ট দুইটি নিয়ে দেখতে হবে এরা দুইজন একে অপরের বেস্টফ্রেন্ড কিনা । যদি বেস্ট ফ্রেন্ড হয় তাহলে true রিটার্ন করবে, না হলে false রিটার্ন করবে ।
+
+
+function isBestFriend(p1, p2) {
+    if (p1.name === p2.friend && p1.friend === p2.name) {
+        return true;
+    } else {
+        return false;
+    }
+}
+isBestFriend({ name: 'abul', friend: 'babul' }, { name: 'babul', friend: 'abul' });
