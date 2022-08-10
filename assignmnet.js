@@ -21,5 +21,5 @@ function isJavaScriptFile(String) {
         return false;
     }
 }
-const isJavascript = isJavaScriptFile('gg.png');
+const isJavascript = isJavaScriptFile('index.js');
 // console.log(isJavascript);
